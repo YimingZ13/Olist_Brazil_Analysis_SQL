@@ -9,7 +9,7 @@ The datasets, kindly provided by Olist, encompasses 99,441 order records from Br
 
 ## Data Preprocessing
 After importing the datasets into MySQL, I noticed some columns are missing values and of wrong datatypes, we need to fix them before our analysis.
-![1](/Users/yimingzhao/Desktop/1)
+
 
 
 
