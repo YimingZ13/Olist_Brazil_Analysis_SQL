@@ -14,6 +14,7 @@ The datasets, kindly provided by Olist, encompasses 99,441 order records from Br
 After importing the datasets into MySQL, I noticed some columns are missing values and of wrong datatypes, we need to fix them before our analysis.
 
 <img src="https://github.com/YimingZ13/Olist_Brazil_Analysis_SQL/blob/main/sql_screenshots/1.png" width="500" height="600">
+
 <img src="https://github.com/YimingZ13/Olist_Brazil_Analysis_SQL/blob/main/sql_screenshots/2.png" width="400" height="800"><br><br>
 
 Also the `product_category_name_translation` dataset is only for the translation of category names, I directly updated the category names in the `products` dataset since it can be redundant and can decrease the complexity of joining tables in the further queries (however when dealing with real-life database, it is not suggested to alter the original database directly, keep that in mind). 
@@ -35,9 +36,9 @@ I will answer the following 13 questions in this section:
 1. How many orders were placed on Olist, how has it changed over the years? Is there a seasonality?
 2. What's the total revenue generated on Olist, how does it change over time?
 3. What are the successful categories on Olist, by year, month, and quarter?
-4. Which city, state generates the most revenue for Olist? How actively the population in different areas is placing orders?
+4. Which city, state generates the most revenue on Olist?
 5. What are the most popular categories by city, state?
-6. What is the AOV and CPO of Olist? How does this vary by categories and payment method?
+6. What is the AOV, CPO, and  average profit margin of Olist? How does this vary by categories and payment method?
 7. Who are the frequent shoppers on Olist? How many of them are there? How does this number change over time?
 8. Which customers have the highest CLTV?
 9. What is the customer retention rate (CRR) by geolocaitons?
@@ -88,6 +89,43 @@ For this part, I queried the most popular product categories for each year, quar
 
  I only included data of the year of 2017 for the next two queries. This choice is strategic, given that our dataset spans from September 2016 through August 2018, and the year 2016 presents significantly fewer orders, potentially distorting our insights.. In the first three months, the "Furniture Decor" category led in the number of orders. This suggests an initial consumer preference or perhaps seasonal demand for home decor items during this period.Starting from April, there is a noticeable shift in consumer preference towards the "Bed Bath & Table" category, which then consistently leads in the number of orders for the remainder of the year. There is variability in the number of orders month-to-month within each category, there might be a seasonal pattern associated with holiday shoppig, promotions or other seasonal factors.<br><br>
 
-*4. Which city, state generates the most revenue for Olist? How actively the population in different areas is placing orders?*
+*4. Which city, state generates the most revenue on Olist?*
 
+<img src="https://github.com/YimingZ13/Olist_Brazil_Analysis_SQL/blob/main/sql_screenshots/19.png" width="300" height="350">
+
+<img src="https://github.com/YimingZ13/Olist_Brazil_Analysis_SQL/blob/main/sql_screenshots/20.png" width="250" height="300">
+
+Examining the top 10 cities and states that generated the most revenue on Olist, São Paulo emerges as the frontrunner, amassing revenue that quadruples that of its nearest competitor, Ibitinga. Remarkably, the state of São Paulo as a whole significantly outperforms the second and third-ranking cities, generating approximately ten times their revenue.<br><br>
+
+*5. What are the most popular categories by city, state?*
+
+<img src="https://github.com/YimingZ13/Olist_Brazil_Analysis_SQL/blob/main/sql_screenshots/21.png" width="400" height="450">
+
+<img src="https://github.com/YimingZ13/Olist_Brazil_Analysis_SQL/blob/main/sql_screenshots/22.png" width="400" height="450">
+
+São Paulo is the top city, with the highest number of orders for "Bed Bath & Table," nearly doubling the orders of the next city, Rio de Janeiro, which has 829 orders in the same category. This underscores São Paulo's significant contribution to the overall demand for "Bed Bath & Table" products on Olist.While "Bed Bath & Table" dominates in several cities, other categories also emerge as top choices in different locations. For instance, "Health Beauty" is the most ordered category in Brasília and Salvador, indicating a diverse interest in product categories based on the city. 
+
+Curitiba is unique in showcasing a variety of preferences, with "Sports Leisure" and "Furniture Decor" both leading with 151 orders each. This diversity indicates a broader range of popular product categories in Curitiba compared to other cities, where one category tends to dominate. There might be a geographical pattern for cutsomers shopping preferences.<br><br>
+
+*6. What is the AOV, CPO, and  average profit margin of Olist? How does this vary by categories and payment method?*
+
+**Average Profit Margin** is the difference of **AOV** and **CPO**. It gives businesses a quick snapshot of the direct profitability of their sales transactions. A positive value indicates that the business is making a gross profit on its orders, while a negative value would suggest that it costs more to sell a product than the revenue it generates, signaling a need for reevaluation of pricing, cost management, or both.
+
+**AOV (Average Order Value)** is a metric measures the average amount spent each time a customer places an order. It is calculated by dividing the total revenue by the number of orders. The formula is:<br>
+<p align="center"> $AOV = \frac{Total\ Revenue}{Number\ of\ Orders}$ </p>
+
+**CPO (Cost Per Order)** on the other hand, represents the average cost of getting an order. This includes all the operational costs associated with selling products, such as marketing expenses, shipping, handling, production, and overhead costs divided by the total number of orders (in this dataset, we are only provided with shipping and the cost of the product). The formula is:<br>
+<p align="center"> $CPO = \frac{Total\ Cost\ of\ Product\ +\ Total\ Shipping\ Cost}{Number\ of\ Orders}$ </p><br>
+
+<img src="https://github.com/YimingZ13/Olist_Brazil_Analysis_SQL/blob/main/sql_screenshots/23.png" width="500" height="400">
+
+AOV is slightly higher than CPO, resulting in an average profit margin of $0.42 for every order. This means that after covering the direct costs associated with each order, Olist makes an average profit of $0.42 per order. 
+
+With such a narrow margin, the profitability of Olist likely depends on the volume of orders processed. High volumes could compensate for the low profit per order, making overall business operations sustainable and profitable. Given the tight profit margin, it's essential for Olist to closely monitor both APO and CPO. Small changes in either metric could significantly impact overall profitability, emphasizing the importance of efficient operations and strategic pricing.
+
+<img src="https://github.com/YimingZ13/Olist_Brazil_Analysis_SQL/blob/main/sql_screenshots/24.png" width="500" height="400">
+
+
+
+<img src="https://github.com/YimingZ13/Olist_Brazil_Analysis_SQL/blob/main/sql_screenshots/25.png" width="500" height="350">
 
