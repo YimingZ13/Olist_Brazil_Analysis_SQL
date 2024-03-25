@@ -39,8 +39,8 @@ I will answer the following 13 questions in this section:
 4. Which city, state generates the most revenue on Olist?
 5. What are the most popular categories by city, state?
 6. What is the AOV, CPO, and  average profit margin of Olist? How does this vary by categories and payment method?
-7. Who are the frequent shoppers on Olist? How many of them are there? How does this number change over time?
-8. Which customers have the highest CLTV?
+7. Who are the active shoppers on Olist? How many of them are there? How does this number change over time?
+8. Which customers have the highest CLV?
 9. What is the customer retention rate (CRR) by geolocaitons?
 10. What is the review distribution on Olist, how does this impact sales performance?
 11. What is the average review score for each category? How does it impact sales performance?
@@ -125,7 +125,74 @@ With such a narrow margin, the profitability of Olist likely depends on the volu
 
 <img src="https://github.com/YimingZ13/Olist_Brazil_Analysis_SQL/blob/main/sql_screenshots/24.png" width="500" height="400">
 
+"Fixed telephony" exhibit a very high average profit margin which means this product category not only have a high AOV but also maintain a relatively CPO, leading to significant profitabilit per sale. This suggests that "Fixed Telephony" products are priced well above their cost, potentially due to high demand, low competition, or brand value.
+
+The "Computers" category stands out with the highest AOV but has a moderate profit margin compared to categories with lower AOVs. This could indicate that while computers are high-ticket items with substantial revenue potential, their associated costs (perhaps due to technology, shipping, or warranties) are also significant, affecting the overall margin.
+
+The "Bed Bath & Table" category, renowned for its popularity on the platform, exhibits an average profit margin of only 34.5. The significant revenue associated with the "Bed Bath & Table" category we saw from previous analysis implies a volume-driven business model. The category's success suggests effective market penetration, possibly due to competitive pricing strategies, a wide range of product offerings, or strong brand recognition. The pricing may be strategically set to encourage more frequent purchases, leveraging the high demand to offset the lower margin.
+
+<img 
+src="https://github.com/YimingZ13/Olist_Brazil_Analysis_SQL/blob/main/sql_screenshots/25.png" width="500" height="300">
+
+**What is Boleto? How does it work?**
+
+According to [PagBrasil](https://www.pagbrasil.com/payment-methods/boleto-bancario/). Boleto bancário is an official Brazilian payment method regulated by the Central Bank of Brazil. The payment process for boleto bancário transactions is similar to that of wire transfer or cash payment methods. Customers are provided with a prefilled boleto bancário payment slip.
+
+Boletos showcase the highest profit margin among the payment types, suggesting that transactions made through boleto are both valuable and relatively cost-efficient to process. The substantial margin indicates that boleto payments, despite their manual processing aspects, remain lucrative on the platform.
+
+Debit card payments present a lower AOV than credit cards and boletos, with a margin that reflects moderate profitability. The close proximity of AOV to CPO suggests that while debit cards are a common payment method, they offer less profit per transaction, potentially due to similar processing costs as credit cards but with lower transaction values.
+
+Vouchers significantly diverge from other payment methods, showing a negative profit margin. This indicates that the cost of processing these transactions exceeds the value of orders placed with vouchers.
+
+The data suggests a need to reassess and potentially optimize how different payment methods are encouraged or incentivized. For example, promoting boleto payments, given their higher profitability, could be beneficial.<br><br>
+
+*7. Who are the active shoppers on Olist? How many of them are there? How does this number change over time?*
+
+Active shoppers are defined as customers who placed an order within a 30-day window, I used LAG function to query the previous purchase date for each customer_id, and calculated the time difference between them. There are 1397 active shoppers in total on Olist.
+
+<img 
+src="https://github.com/YimingZ13/Olist_Brazil_Analysis_SQL/blob/main/sql_screenshots/26.png" width="450" height="450">
+
+By grouping the results by year, quarter, and month, we can see the change in number of active customers over time.
+
+<img 
+src="https://github.com/YimingZ13/Olist_Brazil_Analysis_SQL/blob/main/sql_screenshots/27.png" width="450" height="400">
+<img 
+src="https://github.com/YimingZ13/Olist_Brazil_Analysis_SQL/blob/main/sql_screenshots/28.png" width="200" height="250">
+
+There appears to be a general trend of increasing numbers of active shoppers as time progresses from 2016 through 2018. This upward trend is indicative of successful customer engagement and retention strategies, expanding market reach, or both.
+
+The data likely exhibits some degree of seasonal variability, Q4 appears to be particularly strong for customer activity, suggesting that holiday shopping could be a significant driver of increased shopper activity. This is supported by the peaks observed towards the end of 2017 and the beginning of 2018. The beginning of 2018, particularly February, marks the highest recorded number of active shoppers, which could be influenced by post-holiday sales or New Year promotions.<br><br>
+
+*8. Which customers have the highest CLV?*
+
+**CLV (Customer Lifetime Value)** is a metric used to estimate the total revenue a business can anticipate from a single customer over the lifetime of their relationship. It is calculated as following:
+
+<p align="center"> $CLV = Average\ Purchase\ Value\ &times;\ Purchase\ Frequency\ &times;\ Customer\ Lifespan$ </p><br>
+
+<img 
+src="https://github.com/YimingZ13/Olist_Brazil_Analysis_SQL/blob/main/sql_screenshots/28.png" width="200" height="250">
+
+In this query, I will calculate the customer lifespan in the unit of years for an easier interpretation.
+
+The highest CLV values are associated with customers who have relatively high average purchase values but not necessarily the highest purchase frequency or customer lifespan. This suggests that high spend per transaction is a significant driver of CLV.
+
+There seems to be a varied relationship between purchase frequency, customer lifespan, and CLV. Some customers with higher purchase frequencies and shorter customer lifespans have lower CLVs compared to those with fewer transactions but longer lifespans. For example, customer '8d50f5eadf50201ccdcedfb9e2ac8455' made remarkable 15 purchases on Olist, dominated in this aspect, his CLV is only 1028.78. This indicates that both the number of transactions and the length of the customer relationship contribute to CLV, but the weight of their impact can differ.
+
+The customer lifespan column shows variability among customers, suggesting that how long customers stay with a business significantly affects their lifetime value. Customers with longer lifespans tend to have higher CLVs, highlighting the importance of customer retention strategies.<br><br>
+
+*9. What is the customer retention rate (CRR) by geolocaitons?*
+
+<img 
+src="https://github.com/YimingZ13/Olist_Brazil_Analysis_SQL/blob/main/sql_screenshots/29.png" width="200" height="250">
+
+The number of return customers and CRR are not neccessarily correlated. Take Sao Paulo for example, the largest city in Brazil leads in the number of return customers (1015), indicating it's a major market for Olist, but its CRR is relatively moderate, suggesting that while a lot of customers return, there's potential to improve retention further give the city's large customer base (15543). As opposed to Jari, there are only 4 return customers from this city, but it exhibits 100% CRR.
+
+Niteroi stands out with the highest CRR (8.72) in the top 10 cities with the most number of return customers, despite having fewer return customers (74) compared to major cities. This high CRR indicates a strong customer loyalty or satisfaction in Niteroi, making it a model for successful customer engagement strategies.
+
+The company should focus on the cities with a large return customers base. Given their large number of return customers, even small improvement in CRR could translate into significant revenue growth. Tailored engagement and retention strategies could be more effective here.
 
 
-<img src="https://github.com/YimingZ13/Olist_Brazil_Analysis_SQL/blob/main/sql_screenshots/25.png" width="500" height="350">
+
+
 
