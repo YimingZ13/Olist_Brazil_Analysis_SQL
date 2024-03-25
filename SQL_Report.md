@@ -156,7 +156,7 @@ src="https://github.com/YimingZ13/Olist_Brazil_Analysis_SQL/blob/main/sql_screen
 By grouping the results by year, quarter, and month, we can see the change in number of active customers over time.
 
 <img 
-src="https://github.com/YimingZ13/Olist_Brazil_Analysis_SQL/blob/main/sql_screenshots/27.png" width="450" height="400">
+src="https://github.com/YimingZ13/Olist_Brazil_Analysis_SQL/blob/main/sql_screenshots/27.png" width="450" height="350">
 <img 
 src="https://github.com/YimingZ13/Olist_Brazil_Analysis_SQL/blob/main/sql_screenshots/28.png" width="200" height="250">
 
@@ -184,15 +184,46 @@ The customer lifespan column shows variability among customers, suggesting that 
 *9. What is the customer retention rate (CRR) by geolocaitons?*
 
 <img 
-src="https://github.com/YimingZ13/Olist_Brazil_Analysis_SQL/blob/main/sql_screenshots/29.png" width="200" height="250">
+src="https://github.com/YimingZ13/Olist_Brazil_Analysis_SQL/blob/main/sql_screenshots/30.png" width="400" height="500">
 
 The number of return customers and CRR are not neccessarily correlated. Take Sao Paulo for example, the largest city in Brazil leads in the number of return customers (1015), indicating it's a major market for Olist, but its CRR is relatively moderate, suggesting that while a lot of customers return, there's potential to improve retention further give the city's large customer base (15543). As opposed to Jari, there are only 4 return customers from this city, but it exhibits 100% CRR.
 
 Niteroi stands out with the highest CRR (8.72) in the top 10 cities with the most number of return customers, despite having fewer return customers (74) compared to major cities. This high CRR indicates a strong customer loyalty or satisfaction in Niteroi, making it a model for successful customer engagement strategies.
 
-The company should focus on the cities with a large return customers base. Given their large number of return customers, even small improvement in CRR could translate into significant revenue growth. Tailored engagement and retention strategies could be more effective here.
+The company should focus on the cities with a large return customers base. Given their large number of return customers, even small improvement in CRR could translate into significant revenue growth. Tailored engagement and retention strategies could be more effective here.<br><br>
 
+*10. What is the review distribution on Olist, how does this impact sales performance?*
 
+<img 
+src="https://github.com/YimingZ13/Olist_Brazil_Analysis_SQL/blob/main/sql_screenshots/32.png" width="350" height="250">
 
+<img 
+src="https://github.com/YimingZ13/Olist_Brazil_Analysis_SQL/blob/main/sql_screenshots/32.png" width="350" height="250">
 
+The highest review score of 5 dominates both in terms of the number of orders (59,540) and total revenue generated ($89,105,42.14), accounting for 61.72% and 55.66% respectively. This indicates a strong correlation between high customer satisfaction and revenue generation. Orders with a review score of 1 represent 10.21% of the total orders, contribute to 11.34% of the total revenue. Despite being the lowest in the score spectrum, they generate a high revenue share. 20.57%% and 8.62% of the orders received score 4 and 3, respectively, suggesting that a substantial portion of customers had a generally positive but not perfect experience. Score 2, which indicates dissatisfaction, is the least common, with only 3.21% of the total orders. It's important to analyze the reasons behind these low scores to address any recurring issues.<br><br>
 
+*11. What is the average review score for each category? How does it impact sales performance?*
+
+<img 
+src="https://github.com/YimingZ13/Olist_Brazil_Analysis_SQL/blob/main/sql_screenshots/33.png" width="350" height="250">
+
+Categories such as "fashion_childrens_clothes" and "cds_dvds_musicals" have the highest average review scores of 5.00 and 4.64, respectively, but relatively few orders. This suggests niche categories might offer high customer satisfaction due to specialized demand or less competition.
+
+Some categories with a significant number of orders also maintain high review scores, like "luggage_accessories" (1,073 orders, 4.35 average score) and "health_beauty" (9,456 orders, 4.19 average score), indicating a well-received product offering and potentially efficient fulfillment and customer service practices.
+
+"Bed bath & table" being the most popular category only scored 3.92. There seems to be no clear correlation between the number of orders a category has and its average review score. High-order categories can have slightly lower review scores, while categories with fewer orders can have higher scores.<br><br>
+
+*12.  What is the average delivery time? How does this vary for each city, state?*
+
+<img 
+src="https://github.com/YimingZ13/Olist_Brazil_Analysis_SQL/blob/main/sql_screenshots/35.png" width="350" height="100">
+
+Customers shopped from Olist have their orders delivered around 12 days on average.
+
+<img 
+src="https://github.com/YimingZ13/Olist_Brazil_Analysis_SQL/blob/main/sql_screenshots/34.png" width="400" height="300">
+
+<img 
+src="https://github.com/YimingZ13/Olist_Brazil_Analysis_SQL/blob/main/sql_screenshots/36.png" width="500" height="250">
+
+Delivery times vary greatly between cities, with the top cities epxperiencing notably longer delivery times (85 to 148 days) compared to those at the bottom of the list. The state of Sao Paulo has the shortest delivery time on average (8.3 days). The significant discrepancy in delivery times could point towards targeted areas for logistical optimization, especially for cities with exceedingly long delivery times.
